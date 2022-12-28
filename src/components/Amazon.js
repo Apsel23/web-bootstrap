@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Col, Container, Form, Image, Row } from 'react-bootstrap'
 import mapIcon from '../assets/images/location_pin_002.jpg'
@@ -12,6 +12,8 @@ import '../App.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import { Carousel } from 'react-responsive-carousel'
 import CorouselForAmazon from '../commonComponents/CorouselForAmazon'
+import SecondLevelSlideShow from '../commonComponents/SecondLevelSlideShow'
+import { FinalComponent } from '../commonComponents/try'
 const headerItems = [
   { text: 'All', icon: 'menu' },
   { text: 'Amazon Mini Tv' },
@@ -30,38 +32,47 @@ const items = [
   {
     title: 'Upgrade your home | Amazon Brands & more',
     image: [1, 2, 3, 4],
+    bottomText: 'See more',
   },
   {
     title: 'Top picks for your home',
-    image: [1, 2, 3, 4],
+    image: [5, 6, 7, 8],
+    bottomText: 'End of season sale',
   },
   {
     title: 'Redefine your living room',
-    image: [1, 2, 3, 4],
+    image: [9, 10, 11, 12],
+    bottomText: 'See all offers',
   },
   {
     title: 'Car & bike essentials | Up to 60% off',
-    image: [1, 2, 3, 4],
+    image: [13, 14, 15, 16],
+    bottomText: 'Explore all',
   },
   {
     title: 'Shop by Category',
-    image: [1, 2, 3, 4],
+    image: [17, 18, 19, 20],
+    bottomText: 'Shop now',
   },
   {
     title: 'Sign in for your best experience',
-    image: [1, 2, 3, 4],
+    image: [],
+    signInButtonText: 'Sign in Securely',
   },
   {
-    title: 'Exclusive offers on travel tickets',
-    image: [1, 2, 3, 4],
+    title: 'Pay your credit card bills on Amazon',
+    image: 'CreditCard',
+    bottomText: 'Pay now',
   },
   {
     title: 'Revamp your home in style',
-    image: [1, 2, 3, 4],
+    image: [9, 10, 11, 12],
+    bottomText: 'Explore all',
   },
   {
     title: 'Up to 60% off | Styles for Women',
-    image: [1, 2, 3, 4],
+    image: [13, 14, 15, 16],
+    bottomText: 'See more',
   },
 ]
 function Amazon() {
@@ -146,8 +157,8 @@ function Amazon() {
       </Row>
       <Row>
         <div className='d-flex justify-content-evenly'>
-          {headerItems.map((item) => (
-            <div className='d-flex'>
+          {headerItems.map((item,index) => (
+            <div className='d-flex' key={index}>
               {item.icon === 'menu' && (
                 <Image src={menu} height={10} width={10} className='m-2' />
               )}
@@ -159,29 +170,81 @@ function Amazon() {
           ))}
         </div>
       </Row>
-      <Row style={{position:'relative'}}>
+      <Row style={{ position: 'relative' }}>
         <CorouselForAmazon />
       </Row>
-      <Row> 
-      <Col className='d-flex positioning flex-wrap bg-primary justify-content-between'>
-        {items.map((item) => (
-          <Col className='col-3 bg-white m-2'>
-            <p className='text-dark fs-5 fw-bolder text-justify m-2'> {item.title}</p>
-            <Col className='d-inline-flex p-2 flex-wrap justify-content-between'>
-              {item.image.map((item) => (
-                <Image
-                  src={Amazon1}
-                  height={130}
-                  width={130}
-                  style={{ margin: 10 }}
-                />
-              ))}
+
+      <div
+        style={{ position: 'absolute', top: '65%', backgroundColor: '#EAEDED' }}
+      >
+        <Row className='justify-content-center'>
+          {items.map(({ signInButtonText, title, image, bottomText }) => (
+            <Col
+            key={title}
+              className={
+                signInButtonText
+                  ? ' col-6 col-lg-4 col-md-6  row px-4 h-50 align-self-end'
+                  : 'col-6 col-lg-4 col-md-6 gy-3 row px-4'
+              }
+            >
+              <div className=' bg-white  p-3'>
+                <p className='text-dark fs-5 fw-bolder text-justify p-1'>
+                  {title}
+                </p>
+                {signInButtonText ? (
+                  <div className='pb-3'>
+                    <p
+                      className='text-dark text-center p-1 rounded'
+                      style={{
+                        backgroundColor: '#FFD811',
+                        fontSize: 13,
+                        fontWeight: '500',
+                      }}
+                    >
+                      {signInButtonText}
+                    </p>
+                  </div>
+                ) : (
+                  <Row className='gx-3'>
+                    {Array.isArray(image) ? (
+                      image.map((item,index) => (
+                        <Col key={index} className='col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2'>
+                          <Image
+                            src={require(`../assets/images/amazonObject${item}.jpg`)}
+                            style={{ width: '100%', height: '100px' }}
+                          />
+                        </Col>
+                      ))
+                    ) : (
+                      <Image
+                        src={require(`../assets/images/amazonObject${image}.jpg`)}
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    )}
+                  </Row>
+                )}
+                <p
+                  className=''
+                  style={{
+                    fontSize: 13,
+                    fontWeight: '500',
+                    color: '#007185',
+                    paddingTop: 15,
+                  }}
+                >
+                  {bottomText}
+                </p>
+              </div>
             </Col>
-          </Col>
-        ))}
-      </Col>
-      </Row>
-   
+          ))}
+        </Row>
+        <Row className=''>
+        {/* <SecondLevelSlideShow /> */}
+        <FinalComponent />
+        </Row>
+      </div>
+     
+      
     </Container>
   )
 }

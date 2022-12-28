@@ -14,6 +14,7 @@ import rightArrow from '../assets/images/right-arrow.png'
 import leftArrow from '../assets/images/left-arrow.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css'
+import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons'
 const tooglesGroupId = 'Toggles'
 const valuesGroupId = 'Values'
 const mainGroupId = 'Main'
@@ -101,7 +102,7 @@ export default class CorouselForAmazon extends Component {
                 left: 15,
               }}
             >
-              <FontAwesomeIcon icon="fa-regular fa-chevron-right"  style={{color:'red'}} inverse/>
+             <ArrowLeft color='royalblue' />
             </button>
           )
         }
@@ -121,7 +122,7 @@ export default class CorouselForAmazon extends Component {
                 right: 15,
               }}
             >
-             <FontAwesomeIcon icon="fa-regular fa-chevron-right" />
+           <ArrowRight color='royalblue' />
             </button>
           )
         }
