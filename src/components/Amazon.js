@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Col, Container, Form, Image, Row } from 'react-bootstrap'
 import mapIcon from '../assets/images/location_pin_002.jpg'
@@ -7,74 +7,12 @@ import flag from '../assets/images/flag.png'
 import dropdown from '../assets/images/dropdown.png'
 import search from '../assets/images/search.png'
 import menu from '../assets/images/menu.png'
-import Amazon1 from '../assets/images/amazon1.jpg'
 import '../App.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
-import { Carousel } from 'react-responsive-carousel'
 import CorouselForAmazon from '../commonComponents/CorouselForAmazon'
-import SecondLevelSlideShow from '../commonComponents/SecondLevelSlideShow'
-import { FinalComponent } from '../commonComponents/try'
-const headerItems = [
-  { text: 'All', icon: 'menu' },
-  { text: 'Amazon Mini Tv' },
-  { text: 'Best Sellers' },
-  { text: 'Mobiles' },
-  { text: "Today's deals" },
-  { text: 'Customer service' },
-  { text: 'Electronics' },
-  { text: 'Prime', icon: 'dropdown' },
-  { text: 'Home & Kitchen' },
-  { text: 'Fashion' },
-  { text: 'New releases' },
-  { text: 'Books' },
-]
-const items = [
-  {
-    title: 'Upgrade your home | Amazon Brands & more',
-    image: [1, 2, 3, 4],
-    bottomText: 'See more',
-  },
-  {
-    title: 'Top picks for your home',
-    image: [5, 6, 7, 8],
-    bottomText: 'End of season sale',
-  },
-  {
-    title: 'Redefine your living room',
-    image: [9, 10, 11, 12],
-    bottomText: 'See all offers',
-  },
-  {
-    title: 'Car & bike essentials | Up to 60% off',
-    image: [13, 14, 15, 16],
-    bottomText: 'Explore all',
-  },
-  {
-    title: 'Shop by Category',
-    image: [17, 18, 19, 20],
-    bottomText: 'Shop now',
-  },
-  {
-    title: 'Sign in for your best experience',
-    image: [],
-    signInButtonText: 'Sign in Securely',
-  },
-  {
-    title: 'Pay your credit card bills on Amazon',
-    image: 'CreditCard',
-    bottomText: 'Pay now',
-  },
-  {
-    title: 'Revamp your home in style',
-    image: [9, 10, 11, 12],
-    bottomText: 'Explore all',
-  },
-  {
-    title: 'Up to 60% off | Styles for Women',
-    image: [13, 14, 15, 16],
-    bottomText: 'See more',
-  },
-]
+import { SecondLevelSlideShow } from '../commonComponents/SecondLevelSlideShow'
+import { columnItems, headerItems, horizontalSlideShowObj } from '../constants/displayConstants'
+
 function Amazon() {
   return (
     <Container fluid className='mt-2 text-white'>
@@ -157,7 +95,7 @@ function Amazon() {
       </Row>
       <Row>
         <div className='d-flex justify-content-evenly'>
-          {headerItems.map((item,index) => (
+          {headerItems.map((item, index) => (
             <div className='d-flex' key={index}>
               {item.icon === 'menu' && (
                 <Image src={menu} height={10} width={10} className='m-2' />
@@ -178,9 +116,9 @@ function Amazon() {
         style={{ position: 'absolute', top: '65%', backgroundColor: '#EAEDED' }}
       >
         <Row className='justify-content-center'>
-          {items.map(({ signInButtonText, title, image, bottomText }) => (
+          {columnItems.map(({ signInButtonText, title, image, bottomText }) => (
             <Col
-            key={title}
+              key={title}
               className={
                 signInButtonText
                   ? ' col-6 col-lg-4 col-md-6  row px-4 h-50 align-self-end'
@@ -207,8 +145,11 @@ function Amazon() {
                 ) : (
                   <Row className='gx-3'>
                     {Array.isArray(image) ? (
-                      image.map((item,index) => (
-                        <Col key={index} className='col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2'>
+                      image.map((item, index) => (
+                        <Col
+                          key={index}
+                          className='col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2'
+                        >
                           <Image
                             src={require(`../assets/images/amazonObject${item}.jpg`)}
                             style={{ width: '100%', height: '100px' }}
@@ -238,13 +179,12 @@ function Amazon() {
             </Col>
           ))}
         </Row>
-        <Row className=''>
-        {/* <SecondLevelSlideShow /> */}
-        <FinalComponent />
+        <Row className='gy-3 pt-3'>
+          {horizontalSlideShowObj.map((item,index) => (
+            <SecondLevelSlideShow data={item} key={index} index={index} />
+          ))}
         </Row>
       </div>
-     
-      
     </Container>
   )
 }

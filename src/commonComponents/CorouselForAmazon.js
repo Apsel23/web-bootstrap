@@ -40,7 +40,7 @@ const getConfigurableProps = () => ({
   ariaLabel: Text('ariaLabel', undefined),
 })
 
-const  couroselImages= [1, 2, 3, 4]
+const couroselImages = [1, 2, 3, 4]
 const items = [
   {
     title: 'Upgrade your home | Amazon Brands & more',
@@ -88,42 +88,34 @@ export default class CorouselForAmazon extends Component {
         showIndicators={false}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
-            <button
-              type='button'
+            <ArrowLeft
+              color='black'
               onClick={onClickHandler}
-              title={label}
               style={{
                 position: 'absolute',
                 zIndex: 2,
-                top: 'calc(50% - 15px)',
-                width: 30,
-                height: 30,
+                top: 'calc(30% - 15px)',
                 cursor: 'pointer',
                 left: 15,
               }}
-            >
-             <ArrowLeft color='royalblue' />
-            </button>
+              size={40}
+            />
           )
         }
         renderArrowNext={(onClickHandler, hasNext, label) =>
           hasNext && (
-            <button
-              type='button'
+            <ArrowRight
+              color='black'
               onClick={onClickHandler}
-              title={label}
               style={{
                 position: 'absolute',
                 zIndex: 2,
-                top: 'calc(50% - 15px)',
-                width: 30,
-                height: 30,
+                top: 'calc(30% - 15px)',
                 cursor: 'pointer',
                 right: 15,
               }}
-            >
-           <ArrowRight color='royalblue' />
-            </button>
+              size={40}
+            />
           )
         }
       >
@@ -137,7 +129,6 @@ export default class CorouselForAmazon extends Component {
           </div>
       </div>
           )} */}
-      
 
         <div>
           <Image src={Amazon1} />
