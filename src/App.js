@@ -281,7 +281,7 @@ function App() {
   // }, []);
   const finalData = useMemo(() =>  Object.fromEntries(Object.entries(newDataList).filter(([key, value]) => JSON.stringify(oldDataList[key]) !== JSON.stringify(value))), []);
   console.log("finalData", JSON.stringify(finalData));
-  return <div style={{ background: 'black' }}>
+  return <div style={{}}>
     <Amazon />
     <div style={{ flex: 1, color: 'red', backgroundColor: 'white', height: '1400px' }}></div>
   </div>
